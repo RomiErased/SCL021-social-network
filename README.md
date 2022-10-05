@@ -14,13 +14,13 @@ Catbook es una red social orientada a los amantes de los gatos donde podemos:
 En las siguientes imágenes se mostrarán todas las ventanas de nuestro sitio.
 
 Página de inicio que nos permite loguearse.
-![Login](login.jpeg)
+![Login](https://github.com/RomiErased/SCL021-social-network/blob/developerRomi/src/component/login.jpeg)
 
 Página para poder registrarse con correo electrónico o gmail.
-![Registrarse](registrarse.jpeg)
+![Registrarse](https://github.com/RomiErased/SCL021-social-network/blob/developerRomi/src/component/registrarse.jpeg)
 
 Muro principal, donde se pueden visualizar los posts y los usuarios registrados pueden publicar sus propias historias.
-![Muro](muro.jpeg)
+![Muro](https://github.com/RomiErased/SCL021-social-network/blob/developerRomi/src/component/muro.jpeg)
 
 ### El usuario
 Se analizó y priorizó a través de encuestas resolver las problemáticas para las personas que quieren tener un lugar para compartir experiencias de sus gatos.
@@ -43,8 +43,8 @@ Se analizó y priorizó a través de encuestas resolver las problemáticas para 
 
 El prototipo de baja fidelidad fue el primer boceto realizado con papel y lápiz de la interfaz de usuario.
 
-![Prototipo](baja1.jpeg)
-![Prototipo](baja2.jpeg)
+![Prototipo](https://github.com/RomiErased/SCL021-social-network/blob/developerRomi/src/component/baja1.jpeg)
+![Prototipo](https://github.com/RomiErased/SCL021-social-network/blob/developerRomi/src/component/baja2.jpeg)
 
 ### Prototipo de alta fidelidad
 
@@ -54,6 +54,6 @@ https://www.figma.com/file/ljavwsxrWOFaH8eWlF0DNx/red-social-cat-team-library?no
 
 Producto prototipado:
 
-![Prototipo](alta.png)
+![Prototipo](https://github.com/RomiErased/SCL021-social-network/blob/developerRomi/src/component/alta.png)
 
 https://www.figma.com/proto/ljavwsxrWOFaH8eWlF0DNx/red-social-cat-team-library?node-id=413%3A3&scaling=scale-down&page-id=0%3A1&starting-point-node-id=413%3A3
