@@ -1,20 +1,36 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
-const provider = new GoogleAuthProvider();
 import { auth, db } from './config.js';
-import {
-  collection, addDoc, query, onSnapshot,  // collection, query, onSnapshot
-} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
 import { changeRoute } from './ruta.js';
-//import { db } from './config.js';
-//import { showPosts } from '../component/wall.js';
+import {
+  doc,
+  collection,
+  addDoc,
+  query,
+  onSnapshot,
+  updateDoc, // collection, query, onSnapshot
+} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  signOut,
+  onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+const provider = new GoogleAuthProvider();
 
+// const auth = getAuth();
+let myUser;
+// import { db } from './config.js';
+// import { showPosts } from '../component/wall.js';
 
 export const createUser = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log(user)
+      console.log(user);
+      sendEmailVerification(userCredential.user);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -22,10 +38,7 @@ export const createUser = (email, password) =>
       console.log(errorMessage);
     });
 
-
-
 export const loginWithGoogle = () => {
-  const auth = getAuth();
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -33,9 +46,10 @@ export const loginWithGoogle = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      changeRoute("#/wall")
+      changeRoute('#/wall');
       // ...
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -43,73 +57,80 @@ export const loginWithGoogle = () => {
       const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(error)
+      console.log(error);
     });
-}
-
+};
 
 // Add a new document in collection "cities"
 async function createPost(texto) {
   console.log(db);
-  await addDoc(collection(db, "post"), {
+  await addDoc(collection(db, 'post'), {
     content: texto,
+    likes: [],
+    date: new Date(),
+    author: myUser.uid, // hacer ID del autor
   });
-
 }
 
-
-const unsub = (callback) => {
-  onSnapshot(query(collection(db, "post")), (docs) => {
-    docs.forEach(doc => {
-      //console.log("Current data: ", doc.data());
-      callback(doc.data())
+const subscribe = (callback) => {
+  onSnapshot(query(collection(db, 'post')), (docs) => {
+    docs.forEach((doc) => {
+      // console.log("Current data: ", doc.data());
+      callback({...doc.data(),id:doc.id});
     });
-
   });
-}
+};
 
-//export const createUser = (email, password) =>
-export const ingresarConUsuario = (email, password) => {
-const auth = getAuth();
-signInWithEmailAndPassword(auth, email, password) 
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    myUser = user;
     // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-}
+  } else {
+    // User is signed out
+    // ...
+  }
+});
 
-//const auth = getAuth();
-// export const ingresarConClave = (email, password) => {
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     changeRoute("#/wall");
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     //console.log(error)
+// export const createUser = (email, password) =>
+export const ingresarConUsuario = (email, password) => {
+  const auth = getAuth();
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+};
+
+// // cerrar sesión
+// export const logOut = () => {
+//   signOut(auth).then(() => {
+//     window.location.hash = '#/login';
+//   }).catch((error) => {
+//     // An error happened.
 //   });
+// }
+// cerrar sesión
+export const logOut = () => {
+  signOut(auth)
+    .then(() => {
+      window.location.hash = '#/login';
+      console.log(logOut);
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+};
 
-// 
-// const bajarPosts = () => {
-//   const q = query(collection(db, "post"));
-//   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-//     const posts = [];
-//     querySnapshot.forEach((doc) => {
-//       posts.push(doc.data());
-//     });
-//     showPosts(posts);
-//     console.log("Estos son los posteos: ", posts);
-//   });
-// };
-// bajarPosts();
-
-export { createPost, unsub };
+export const updateLikes = (post) => {
+  const ref = doc(db, 'post', post.id);
+  updateDoc(ref, { likes: ['hola'] });
+};
+export { createPost, subscribe };
