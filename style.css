@@ -1,0 +1,163 @@
+html {
+  margin: 0%;
+  padding: 0%;
+}
+
+body {
+  background-image: url(./component/fondonuevo.jpg);
+  text-align: center;
+  padding-top: 5%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.caja {
+  background: black;
+}
+
+h1 {
+  font-family: 'Irish Grover', cursive;
+  color: #8EBD9F;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+p {
+  font-family: 'Jomhuria', cursive;
+  ;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  color: #8EBD9F;
+  margin: 1px;
+}
+
+a {
+  color: #FCB1A7;
+}
+
+input {
+  background: #FFEEE6;
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  /* display: flex; */
+}
+
+/*button{
+    background: #FCB1A7;
+    color: #8EBD9F;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 7px;
+    border: 1px;
+    margin-bottom: 10px;
+}*/
+nav {
+  background: white;
+}
+
+.divPosteo {
+  flex-direction: column;
+  display: flex;
+  position: absolute;
+  top: 55%;
+  left: -25%;
+  width: 150%;
+}
+
+#posteo {
+  display: block;
+  width: 25%;
+  margin: 20px;
+  background: #f3c6c0;
+  color: #448f5f;
+  padding-bottom: 20px;
+  align-self: center;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+#text-description {
+  resize: none;
+  background-color: #d0efdb;
+  position: relative;
+  border-radius: 5px;
+  top: 70px;
+  left: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  height: 50px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .character-container {
+    width: 100%;
+    /* padding-left: 20%; */
+  }
+
+  body {
+    background: #FFDACC;
+    text-align: center;
+
+  }
+
+}
+
+.btnpost {
+
+  top: 100%;
+  left: 47%;
+  right: 47%;
+  background: #FCB1A7;
+  color: #8EBD9F;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px;
+}
+
+.btnLogOut {
+
+  flex-direction: column;
+
+  top: 35%;
+  right: 25%;
+  background: #FCB1A7;
+  color: #8EBD9F;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px;
+}
+
+.btnIngresar {
+  background: #FCB1A7;
+  color: #8EBD9F;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px;
+
+}
+
+.btnRegistrarse {
+  background: #FCB1A7;
+  color: #8EBD9F;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px;
+}
+
+.likeCat {
+  width: 30px;
+  display: block;
+  margin-left: auto;
+}
