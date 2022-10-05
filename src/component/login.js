@@ -1,17 +1,15 @@
 import { createUser, loginWithGoogle, ingresarConUsuario} from "../lib/firebase.js";
 import { changeRoute } from "../lib/ruta.js";
 
-
 export const login = () => {
   const logearse = document.createElement("div");
   logearse.className = "container-login";
   // logearse.textContent = "este es el login!";
-  //console.log(logearse);
+  // console.log(logearse);
 
   const caja = document.createElement("div");
-  caja.className = "caja";
-  logearse.appendChild(caja)
-
+  caja.className = 'caja';
+  logearse.appendChild(caja);
 
   const logoPrincipal = document.createElement("img");
   logoPrincipal.setAttribute("width", "200px");
@@ -37,36 +35,31 @@ export const login = () => {
   logearse.appendChild(document.createElement("br"));
   logearse.appendChild(document.createElement("br"));
 
-
-
   const botonIngresar = document.createElement("button");
   botonIngresar.className = "btnIngresar";
   botonIngresar.innerHTML = "Ingresar";
 
   botonIngresar.addEventListener("click", () => {
-    if (ingresarCorreo.value === "" && ingresarClave.value ===""){
-return alert("ingresa tus datos")
-    }else{
+    if (ingresarCorreo.value === "" && ingresarClave.value === "") {
+      return alert("ingresa tus datos")
+    } else {
       ingresarConUsuario(ingresarCorreo.value, ingresarClave.value).then(() => {
         window.location.hash = '#/wall'
-      });
-      
-   }
-    
-  })
+       });
+    };
+  });
 
   // function validarCorreo(){
-   // if (createUser)
-// a la funcion sendEmailVerification tenemos que decirle
-// que si el usuario esta verificado ingrese al muro y si no un alert para verificar correo
-//};
+  // if (createUser)
+  // a la funcion sendEmailVerification tenemos que decirle
+  // que si el usuario esta verificado ingrese al muro y si no un alert para verificar correo
+  // };
 
   logearse.appendChild(botonIngresar);
 
   const parrafoRegistrar = document.createElement("p");
   parrafoRegistrar.innerHTML = "¿No tienes cuenta? Registrate <a href ='#/register'>aqui</a>";
   logearse.appendChild(parrafoRegistrar);
-
 
   const sesionGoogle = document.createElement("p");
   sesionGoogle.textContent = "Inicia sesion con";
@@ -75,11 +68,9 @@ return alert("ingresa tus datos")
   const botonGoogle = document.createElement("img");
   botonGoogle.src= "./component/gootrans.jpg";
   botonGoogle.setAttribute("width", "30px");
-  botonGoogle.addEventListener("click", loginWithGoogle)
+  botonGoogle.addEventListener("click", loginWithGoogle);
 
-  logearse.appendChild(botonGoogle)
+  logearse.appendChild(botonGoogle);
 
   return logearse;
 };
-
-

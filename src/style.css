@@ -35,8 +35,8 @@ p {
   margin: 1px;
 }
 
-a{
-    color: #FCB1A7;
+a {
+  color: #FCB1A7;
 }
 
 input {
@@ -70,7 +70,7 @@ nav {
 }
 
 #posteo {
-  display: flex;
+  display: block;
   width: 25%;
   margin: 20px;
   background: #f3c6c0;
@@ -121,17 +121,14 @@ nav {
   border-radius: 5px;
   padding: 7px;
   border: 1px;
-
-
-
 }
 
 .btnLogOut {
-  
+
   flex-direction: column;
-  
+
   top: 35%;
-  left: 45%;
+  right: 25%;
   background: #FCB1A7;
   color: #8EBD9F;
   font-weight: bold;
@@ -140,26 +137,27 @@ nav {
   border: 1px;
 }
 
-.btnIngresar{
-    background: #FCB1A7;
-    color: #8EBD9F;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 7px;
-    border: 1px;
-   
+.btnIngresar {
+  background: #FCB1A7;
+  color: #8EBD9F;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px;
+
 }
 
-.btnRegistrarse{
-    background: #FCB1A7;
-    color: #8EBD9F;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 7px;
-    border: 1px;   
+.btnRegistrarse {
+  background: #FCB1A7;
+  color: #8EBD9F;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 7px;
+  border: 1px;
 }
 
-.likeCat{
+.likeCat {
   width: 30px;
-
+  display: block;
+  margin-left: auto;
 }

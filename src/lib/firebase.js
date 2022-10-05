@@ -1,3 +1,5 @@
+import { auth, db } from './config.js';
+import { changeRoute } from './ruta.js';
 import {
   doc,
   collection,
@@ -14,15 +16,13 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+  onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 const provider = new GoogleAuthProvider();
-import { auth, db } from "./config.js";
-import { changeRoute } from "./ruta.js";
+
 // const auth = getAuth();
 let myUser;
-//import { db } from './config.js';
-//import { showPosts } from '../component/wall.js';
+// import { db } from './config.js';
+// import { showPosts } from '../component/wall.js';
 
 export const createUser = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password)
@@ -46,7 +46,7 @@ export const loginWithGoogle = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
-      changeRoute("#/wall");
+      changeRoute('#/wall');
       // ...
     })
     .catch((error) => {
@@ -64,7 +64,7 @@ export const loginWithGoogle = () => {
 // Add a new document in collection "cities"
 async function createPost(texto) {
   console.log(db);
-  await addDoc(collection(db, "post"), {
+  await addDoc(collection(db, 'post'), {
     content: texto,
     likes: [],
     date: new Date(),
@@ -73,9 +73,9 @@ async function createPost(texto) {
 }
 
 const subscribe = (callback) => {
-  onSnapshot(query(collection(db, "post")), (docs) => {
+  onSnapshot(query(collection(db, 'post')), (docs) => {
     docs.forEach((doc) => {
-      //console.log("Current data: ", doc.data());
+      // console.log("Current data: ", doc.data());
       callback({...doc.data(),id:doc.id});
     });
   });
@@ -93,7 +93,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-//export const createUser = (email, password) =>
+// export const createUser = (email, password) =>
 export const ingresarConUsuario = (email, password) => {
   const auth = getAuth();
   return signInWithEmailAndPassword(auth, email, password)
@@ -120,7 +120,7 @@ export const ingresarConUsuario = (email, password) => {
 export const logOut = () => {
   signOut(auth)
     .then(() => {
-      window.location.hash = "#/login";
+      window.location.hash = '#/login';
       console.log(logOut);
       // Sign-out successful.
     })
@@ -130,8 +130,7 @@ export const logOut = () => {
 };
 
 export const updateLikes = (post) => {
-
-  const ref = doc(db, "post", post.id);
-  updateDoc(ref, { likes: ["hola"] });
+  const ref = doc(db, 'post', post.id);
+  updateDoc(ref, { likes: ['hola'] });
 };
 export { createPost, subscribe };
